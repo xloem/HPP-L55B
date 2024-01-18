@@ -2,6 +2,14 @@ For boot and /boot, which contains kernel, dtb, and ramdisk, 2024-01 maybe tools
 For super and /system partition, which contains OS, 2024-01 maybe tools/mount_super.bash which uses tools/parse-android-dynparts .
 For userdata and /data, which contains user state, maybe tarball because hardware encryption for now. Maybe this for external storage too.
 
+Regarding taring mounted filesystems, it seems a reasonable approach migt be something like:
+        # NOTE: /proc/mounts might be a better or additional source for mounts than fstab. shows for example encrypted root.
+   mkdir tmp; mount -t tmpfs tmp tmp; cd tmp # deters recursive direntries from current filesystem
+   grep '^/' ../fstab.mt6739 | while read dev dir typ ma mb; do mkdir -p ."$dir"; mount -t "$typ" -o "$ma","$mb",ro "$dev" ."$dir" || mount --bind "$dir" ."$dir"; done
+   # note that mount --bind does not bind submounts unless --rbind is passed, preventing extra data from being included
+   mkdir storage; mount --rbind /storage storage
+   tar -cvf - --one-file-system .
+
 Experiences transferring data from a live device:
     - connecting to linux hotspot: slow
     - connecting via USB tether on old phone: ~12MB/s

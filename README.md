@@ -1,5 +1,5 @@
 # HPP-L55B
-repo #2 of hpp-l55b images
+repo #2 of hpp-l55b images (hot pepper serrano)
 
 I guess I need to get a new harddrive adapter to access my original repository since I don't see it online.
 
