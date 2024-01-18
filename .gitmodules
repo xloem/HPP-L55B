@@ -19,3 +19,4 @@
 [submodule "kernel/kernel-mtk"]
 	path = kernel/kernel-mtk
 	url = https://github.com/MotorolaMobilityLLC/kernel-mtk
+	branch = android-10-release-qmd

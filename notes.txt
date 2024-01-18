@@ -9,6 +9,10 @@ Experiences transferring data from a live device:
 
 Although hardware master keys are stored, logical keys may be dumpable.
 Full-disk encryption keys may be dumpable using `dmsetup table --showkeys`.
+Keys for adoptable external storage are in /data/misc/vold/expand_*.key in binary format.
+    ( https://bestrootandroid.blogspot.com/2015/06/decrypting-android-m-adopted-storage.html )
+    ( says to convert key to hexadecimal and fill in below )
+    ( dmsetup create crypt1 --table "0 `blockdev --getsize /dev/sdb2` crypt aes-cbc-essiv:sha256 00010203040506070809010a0b0c0d0e0f 0 /dev/sdb2 0" )
 Folder-specific encryption keys pass from /data/misc/vold/user_keys through vold to fscrypt, haven't found or made a tool at this time.
 Encryption keys can be extracted from a memory image or code injection.
     I'm unsure what 'mtkclient dumpsram' does, but it may produce a memory image.
@@ -20,3 +24,29 @@ Encryption keys can be extracted from a memory image or code injection.
         https://dfrws.org/wp-content/uploads/2021/03/FSIDI301113_proof.pdf
         https://www.cs1.tf.fau.de/research/system-security-group/one-key-to-rule/
 
+It is possible to decrypt data if the same hardware is used to perform the decryption (2019):
+    https://xdaforums.com/t/mate-9-how-to-retrieve-encrypted-files-from-a-broken-system-userdata-partition.3894561/
+
+One source on the internet said kernel headers from any kernel with an earlier release version may work for a given binary kernel.
+It also said to make them this way:
+    make mrproper
+    make ARCH=${arch} headers_check
+    make ARCH=${CLFS_ARCH} INSTALL_HDR_PATH=dest headers_install
+The LiME instructions say the kernel release version (make kernelrelease) must match. The '+' at the end of the version indicates
+that the built kernel commit was not a tag or had non-committed changes.
+The LiME instructions say to do more than install headers; to do instead `make modules_prepare`.
+
+Reproducible tar archive:
+    Originally from https://reproducible-builds.org/docs/archives/#full-example 
+    and http://h2.jaguarpaw.co.uk/posts/reproducible-tar/ :
+    find <files> -print0 \
+    | sort -z \
+    | tar -cf output.tar \
+      --mtime='@0' \
+      --owner=0 --group=0 --numeric-owner \
+      --pax-option=exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime,delete=mtime \
+      --format=posix \
+      --mode="go-rwx,u-rw" \
+      --no-recursion \
+      --null \
+      --files-from -
