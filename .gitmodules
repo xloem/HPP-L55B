@@ -1,0 +1,9 @@
+[submodule "tools/parse-android-dynparts"]
+	path = tools/parse-android-dynparts
+	url = https://github.com/droidian/parse-android-dynparts
+[submodule "tools/bootimg-info"]
+	path = tools/bootimg-info
+	url = https://github.com/osm0sis/bootimg-info
+[submodule "tools/android-unpackbootimg"]
+	path = tools/android-unpackbootimg
+	url = https://github.com/anestisb/android-unpackbootimg
