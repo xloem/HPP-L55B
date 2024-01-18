@@ -10,3 +10,9 @@
 [submodule "tools/fridump"]
 	path = tools/fridump
 	url = https://github.com/Nightbringer21/fridump
+[submodule "tools/LiME"]
+	path = tools/LiME
+	url = https://github.com/504ensicsLabs/LiME
+[submodule "tools/mtkclient"]
+	path = tools/mtkclient
+	url = https://github.com/bkerler/mtkclient
