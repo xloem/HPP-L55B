@@ -7,3 +7,6 @@
 [submodule "tools/android-unpackbootimg"]
 	path = tools/android-unpackbootimg
 	url = https://github.com/anestisb/android-unpackbootimg
+[submodule "tools/fridump"]
+	path = tools/fridump
+	url = https://github.com/Nightbringer21/fridump
