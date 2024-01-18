@@ -16,3 +16,6 @@
 [submodule "tools/mtkclient"]
 	path = tools/mtkclient
 	url = https://github.com/bkerler/mtkclient
+[submodule "kernel/kernel-mtk"]
+	path = kernel/kernel-mtk
+	url = https://github.com/MotorolaMobilityLLC/kernel-mtk
