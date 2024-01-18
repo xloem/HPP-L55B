@@ -1,0 +1,22 @@
+For boot and /boot, which contains kernel, dtb, and ramdisk, 2024-01 maybe tools/android-unpackbootimg .
+For super and /system partition, which contains OS, 2024-01 maybe tools/mount_super.bash which uses tools/parse-android-dynparts .
+For userdata and /data, which contains user state, maybe tarball because hardware encryption for now. Maybe this for external storage too.
+
+Experiences transferring data from a live device:
+    - connecting to linux hotspot: slow
+    - connecting via USB tether on old phone: ~12MB/s
+    i suspect it can go faster, as the device something like 20MB/s to the local wifi router (the network didn't provide for intracommunication)
+
+Although hardware master keys are stored, logical keys may be dumpable.
+Full-disk encryption keys may be dumpable using `dmsetup table --showkeys`.
+Folder-specific encryption keys pass from /data/misc/vold/user_keys through vold to fscrypt, haven't found or made a tool at this time.
+Encryption keys can be extracted from a memory image or code injection.
+    I'm unsure what 'mtkclient dumpsram' does, but it may produce a memory image.
+    Full-disk encryption (2011):
+        aeskeyfind
+        https://faui1-files.cs.fau.de/filepool/projects/frost/frost.pdf
+            note: i noticed somewhere it said android upgraded its aes to store keys in cpu registers to make this harder
+    File-based encryption (2021):
+        https://dfrws.org/wp-content/uploads/2021/03/FSIDI301113_proof.pdf
+        https://www.cs1.tf.fau.de/research/system-security-group/one-key-to-rule/
+
