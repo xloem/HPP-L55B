@@ -20,3 +20,9 @@
 	path = kernel/kernel-mtk
 	url = https://github.com/MotorolaMobilityLLC/kernel-mtk
 	branch = android-10-release-qmd
+[submodule "tools/bypass_utility"]
+	path = tools/bypass_utility
+	url = https://github.com/MTK-bypass/bypass_utility
+[submodule "tools/exploits_collection"]
+	path = tools/exploits_collection
+	url = https://github.com/MTK-bypass/exploits_collection
