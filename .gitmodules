@@ -26,3 +26,6 @@
 [submodule "tools/exploits_collection"]
 	path = tools/exploits_collection
 	url = https://github.com/MTK-bypass/exploits_collection
+[submodule "tools/kamakiri"]
+	path = tools/kamakiri
+	url = https://github.com/amonet-kamakiri/kamakiri
