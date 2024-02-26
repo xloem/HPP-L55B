@@ -1,0 +1,6 @@
+2024-02-26
+I've closed this phone with KCOL0 hardwired to ground to access the bootrom.
+The screws for the back are taped to the battery.
+There is tape over the slots that can possibly be gently cut or torn off. It was part of securing KCOL0 without a soldering iron.
+It has a factory super partition. The user and cache partitions are from a roughly unrelated backup.
+I was going to see if I could move the state of another phone onto it, but didn't complete testing; there's no need to continue that unless interested.
